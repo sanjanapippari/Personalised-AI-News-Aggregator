@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load i18n %}
+    <title>{% trans "NewsDoot" %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+    /* Base reset */
+/* GENERAL RESET */
+/* GLOBAL RESET */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9fb;
+  margin: 0;
+  padding: 0;
+}
+
+/* ================================
+   NAVBAR STYLING (PINK-RED COLOR)
+   ================================ */
+.navbar {
+  background-color: #e50050 ;
+  padding: 12px 24px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffeaa7 !important; /* soft gold on hover */
+}
+
+/* ================================
+   DROPDOWN MENU (LIGHT & CLEAN)
+   ================================ */
+.dropdown-menu {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  padding: 10px;
+  min-width: 180px;
+}
+
+.dropdown-item {
+  color: #333333;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: #f1f1f1;
+}
+
+/* ================================
+   FILTER SECTION (CENTERED BOX)
+   ================================ */
+.filter-section {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.filter-section label {
+  font-weight: 600;
+  color: #2d3436;
+  margin-right: 10px;
+}
+
+.filter-section select,
+.filter-section input[type="text"],
+.filter-section input[type="date"] {
+  background-color: #f0f0f5;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  margin-right: 15px;
+  font-weight: 500;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+
+.filter-section select:focus,
+.filter-section input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(229, 0, 80, 0.2);
+}
+
+/* ================================
+   FILTER BUTTONS
+   ================================ */
+.filter-section button {
+  background-color: #e50050;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+.filter-section button:hover {
+  background-color: #c30042;
+}
+
+/* ================================
+   ARTICLE CARDS
+   ================================ */
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-body {
+  background-color: #ffffff;
+}
+
+.feedback-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e50050;
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  animation: fadeInOut 3s forwards;
+  opacity: 0;
+  pointer-events: none;
+}
+.section-divider {
+  position: relative;
+  text-align: center;
+}
+
+.recommendation-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: -1.5rem;
+  background-color: #f9f9fb;
+  display: inline-block;
+  padding: 0 20px;
+  color: #5e35b1; /* Indigo */
+}
+
+.divider-line {
+  border: none;
+  border-top: 2px solid #5e35b1; /* Indigo */
+  margin: 20px 0;
+}
+
+.dark-mode .recommendation-title {
+  background-color: #1e1e1e;
+  color: #b39ddb; /* Light violet for dark mode */
+}
+
+.dark-mode .divider-line {
+  border-color: #b39ddb;
+}
+
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+/* DARK MODE STYLES */
+.dark-mode {
+  background-color: #1e1e1e !important;
+  color: #f1f1f1 !important;
+}
+
+.dark-mode .navbar {
+  background-color: #121212 !important;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .filter-section,
+.dark-mode .card-body,
+.dark-mode .dropdown-menu {
+  background-color: #2c2c2c !important;
+  color: #ffffff !important;
+  border-color: #444;
+}
+
+.dark-mode .dropdown-item {
+  color: #ddd !important;
+}
+
+.dark-mode .dropdown-item:hover {
+  background-color: #3a3a3a !important;
+}
+
+.dark-mode .card {
+  background-color: #2a2a2a !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode a,
+.dark-mode a:hover {
+  color: #f48fb1 !important;
+}
+
+.dark-mode input,
+.dark-mode select {
+  background-color: #333 !important;
+  color: #fff !important;
+  border-color: #555 !important;
+}
+    </style>
+  </head>
+
+  <body>
+    {% load social_share %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3">
+      <a href="javascript:history.back()" class="btn btn-outline-light me-3">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+
+      <a class="navbar-brand" href="#">{% trans "📰 NewsDoot" %}</a>
+
+      <div class="d-flex align-items-center ms-auto">
+        <!-- 🌐 Language Dropdown -->
+        <div class="dropdown me-3">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            🌐 Language
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=en">English</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=hi">Hindi</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=te">Telugu</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=fr">French</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=de">German</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=es">Spanish</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=it">Italian</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=pt">Portuguese</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=ru">Russian</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=zh">Chinese</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=ar">Arabic</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=nl">Dutch</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=no">Norwegian</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=sv">Swedish</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=he">Hebrew</a></li>
+  <li><a class="dropdown-item" href="{% url 'scrape_filters' %}?lang=se">Northern Sami</a></li>
+</ul>
+
+        </div>
+
+        <!-- 👤 User Dropdown -->
+        <div class="dropdown">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            👤 {{ request.user.username }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li>
+              <form method="POST" action="{% url 'logout' %}" class="px-3">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">Logout</button>
+              </form>
+            </li>
+            <li><a class="dropdown-item" href="{% url 'liked_articles' %}">❤️ Liked Articles</a></li>
+            <li><a class="dropdown-item" href="{% url 'disliked_articles' %}">👎 Disliked Articles</a></li>
+            <li><a class="dropdown-item" href="#">User Dashboard (Coming Soon)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="myFunction()">Change Mode</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <form method="get" action="{% url 'scrape_filters' %}" class="row g-3 filter-form mb-4">
+        <input type="hidden" name="lang" value="{{ request.GET.lang|default:'en' }}">
+        <div class="col-md-3">
+          <input type="text" name="q" class="form-control" placeholder="Search keyword (e.g., Apple)" />
+        </div>
+        <div class="col-md-2">
+          <input type="date" name="from" min="2025-06-11" class="form-control" />
+        </div>
+        <div class="col-md-2">
+          <input type="date" name="to" min="2025-06-11" class="form-control" />
+        </div>
+        <div class="col-md-3">
+          <select name="source" class="form-control">
+            <option value="">All Sources</option>
+            <option value="bbc-news">BBC News</option>
+            <option value="cnn">CNN</option>
+            <option value="google-news">Google News</option>
+            <option value="the-times-of-india">The Times of India</option>
+            <option value="techcrunch">TechCrunch</option>
+            <option value="the-verge">The Verge</option>
+            <option value="entertainment-weekly">Entertainment Weekly</option>
+            <option value="espn">ESPN</option>
+            <option value="nbc-news">NBC News</option>
+            <option value="abc-news">ABC News</option>
+            <option value="medical-news-today">Medical News Today</option>
+            <option value="al-jazeera-english">Al Jazeera English</option>
+            <option value="fox-news">Fox News</option>
+            <option value="fox-sports">Fox Sports</option>
+            <option value="globo">Globo</option>
+            <option value="the-washington-post">The Washington Post</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Filter News</button>
+        </div>
+
+        <!-- Category Dropdown -->
+        <div class="col-md-12">
+          <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    Browse by Category
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     {% for category in categories %}
+
+      <li>
+        <a class="dropdown-item" href="{% url 'scrape_by_category' name=category %}?lang={{ request.GET.lang|default:'en' }}">{{ category|capfirst }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+        </div>
+      </form>
+{% if recommended_articles %}
+  <div class="section-divider mt-5 mb-4">
+  <hr class="divider-line">
+  <h3 class="recommendation-title text-center">✨ Recommended For You Based on Your Interests</h3>
+  <hr class="divider-line">
+</div>
+
+  <div class="row">
+    {% for article in recommended_articles %}
+    <div class="col-12 col-md-4 col-lg-3">
+      <div class="card mb-4 border border-warning">
+        <img class="card-img-top" src="{{ article.image }}" />
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{{ article.url }}" target="_blank">{{ article.title|truncatechars:50 }}</a>
+          </h5>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-success btn-sm mb-1" href="https://api.whatsapp.com/send?text={{ article.url }}" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a class="btn btn-info btn-sm mb-1 text-white" href="https://t.me/share/url?url={{ article.url|urlencode }}&text={{ article.title|urlencode }}" target="_blank">
+            <i class="fab fa-telegram"></i> Telegram
+          </a>
+          <button class="btn btn-outline-primary btn-sm mt-1" onclick="summarizeArticle('{{ article.url|escapejs }}', this)">
+            🧠 Summarize
+          </button>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+      <div class="row">
+        <div class="section-divider mt-4 mb-4">
+  <hr class="divider-line">
+  <h5 class="recommendation-title text-center">📚 Explore More News Below</h5>
+  <hr class="divider-line">
+</div>
+
+        {% for object in object_list %}
+        
+        <div class="col-12 col-md-4 col-lg-3">
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{ object.image }}" />
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{{ object.url }}" target="_blank">{{ object.title|truncatechars:50 }}</a>
+              </h5>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between flex-wrap">
+                <button class="btn btn-outline-success btn-sm" onclick="toggleFeedback('{{ object.url }}', 'like')">
+                  <i class="fa fa-thumbs-up"></i>
+                </button>
+                <button class="btn btn-outline-danger btn-sm" onclick="toggleFeedback('{{ object.url }}', 'dislike')">
+                  <i class="fa fa-thumbs-down"></i>
+                </button>
+                <a class="btn btn-success btn-sm mb-1" href="https://api.whatsapp.com/send?text={{ object.url }}" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a class="btn btn-info btn-sm mb-1 text-white" href="https://t.me/share/url?url={{ object.url|urlencode }}&text={{ object.title|urlencode }}" target="_blank">
+                  <i class="fab fa-telegram"></i> Telegram
+                </a>
+                <button class="btn btn-outline-primary btn-sm mt-1" onclick="summarizeArticle('{{ object.url|escapejs }}', this)">
+                  🧠 Summarize
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Floating Summary Popup -->
+    <div id="summaryPopup" class="summary-popup" style="display:none;">
+      <div class="popup-content">
+        <span id="popupClose" class="close">&times;</span>
+        <h5 id="popupTitle"></h5>
+        <p id="popupSummary"></p>
+      </div>
+    </div>
+<div id="feedbackPopup" style="display: none;" class="feedback-popup">
+  <span id="feedbackMessage"></span>
+</div>
+
+    <script>
+      function myFunction() {
+  const isDark = document.body.classList.toggle("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+      function summarizeArticle(url, button) {
+  fetch(`/news/summarize/?url=${encodeURIComponent(url)}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.summary) {
+        document.getElementById("popupTitle").innerText = data.title;
+        document.getElementById("popupSummary").innerText = data.summary;
+        document.getElementById("summaryPopup").style.display = "block";
+      } else {
+        alert("Could not summarize article.");
+      }
+    })
+    .catch(error => {
+      alert("Error fetching summary.");
+    });
+}
+
+function toggleFeedback(url, action) {
+  const card = event.target.closest('.card');
+  const articleTitle = card.querySelector('.card-title a').innerText;
+  const image = card.querySelector('img').src;
+  const source = "";
+
+  fetch("{% url 'toggle_feedback' %}", {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": "{{ csrf_token }}",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: `url=${encodeURIComponent(url)}&action=${action}&title=${encodeURIComponent(articleTitle)}&image=${encodeURIComponent(image)}&source=${encodeURIComponent(source)}`
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === "ok") {
+      showFeedbackPopup(`✅ Feedback updated: ${action}`);
+    } else {
+      showFeedbackPopup(`⚠️ ${data.message || "Something went wrong."}`);
+    }
+  });
+}
+
+
+// Show floating feedback popup
+function showFeedbackPopup(message) {
+  const popup = document.getElementById("feedbackPopup");
+  const messageEl = document.getElementById("feedbackMessage");
+
+  messageEl.innerText = message;
+  popup.style.display = "block";
+
+  // Reset animation
+  popup.classList.remove("fade");
+  void popup.offsetWidth; // Force reflow
+  popup.classList.add("fade");
+
+  // Hide after 3 seconds
+  setTimeout(() => {
+    popup.style.display = "none";
+  }, 3000);
+}
+
+    </script>
+<script>
+  // On page load, check if theme is stored
+  document.addEventListener("DOMContentLoaded", function() {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      document.body.classList.add("dark-mode");
+    }
+  });
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

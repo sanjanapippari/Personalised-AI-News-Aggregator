@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="{% static 'users/signup.css' %}">
+  <link rel="stylesheet" href="{% static 'users/messages.css' %}"> 
+</head>
+<body>
+<div class="signup-page">
+  <div class="signup-box">
+    <h1 class="title">Sign up</h1>
+    <h2 class="subtitle">News Aggregator – Personalized for You 📢</h2>
+
+  
+  <form method="POST">
+  {% csrf_token %}
+  <input type="text" name="first_name" placeholder="First Name" required />
+  <input type="text" name="last_name" placeholder="Last Name" required />
+  <input type="text" name="username" placeholder="Username" required />
+  <input type="email" name="email" placeholder="Email ID" required />
+  
+  <input type="text" name="location" placeholder="City or Location (e.g. Mumbai)" required />
+  <input type="password" name="password" placeholder="Password" required />
+  <input type="password" name="confirm_password" placeholder="Confirm Password" required />
+  <button type="submit" class="signup-button">Sign up</button>
+</form>
+
+
+{% if messages %}
+  <div class="error-messages">
+    {% for message in messages %}
+      <p class="error-text">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+    <div class="login-button">
+      Already have an account? <a href="{% url 'login' %}">Login</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function closePopup() {
+    const popup = document.getElementById('popup');
+    if (popup) popup.style.display = 'none';
+  }
+</script>
+</body>
+</html>

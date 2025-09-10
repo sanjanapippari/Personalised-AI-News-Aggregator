@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">❤️ Liked Articles</h2>
+  <div class="row">
+    {% for item in articles %}
+    <div class="col-12 col-md-4 col-lg-3">
+      <div class="card mb-4">
+        <img class="card-img-top" src="{{ item.image }}" onerror="this.src='https://via.placeholder.com/300x180?text=No+Image';" />
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{{ item.article_url }}" target="_blank">{{ item.article_title|truncatechars:50 }}</a>
+          </h5>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between flex-wrap">
+            <!-- WhatsApp Share -->
+            <a class="btn btn-success btn-sm mb-1" href="https://api.whatsapp.com/send?text={{ item.article_url }}" target="_blank">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+
+            <!-- Telegram Share -->
+            <a class="btn btn-info btn-sm mb-1 text-white" href="https://t.me/share/url?url={{ item.article_url|urlencode }}&text={{ item.article_title|urlencode }}" target="_blank">
+              <i class="fab fa-telegram"></i> Telegram
+            </a>
+
+            <!-- Follow Source (Optional, hide if you don't store source) -->
+            {% if item.source %}
+            <button class="btn btn-outline-warning btn-sm" onclick="toggleFollow('{{ item.source }}')" id="follow-{{ item.source }}">
+              ⭐ Follow
+            </button>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-muted">No liked articles found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

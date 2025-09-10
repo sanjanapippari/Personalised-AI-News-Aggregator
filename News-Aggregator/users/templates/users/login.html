@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'users/login.css' %}">
+  <link rel="stylesheet" href="{% static 'users/messages.css' %}"> 
+</head>
+<body>
+<div class="login-page">
+  <div class="login-box">
+    <div class="header">
+      <h2>News Aggregator 📢</h2>
+    </div>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username or Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit" class="login-button">Login</button>
+    </form>
+
+{% if messages %}
+  <div class="error-messages">
+    {% for message in messages %}
+      <p class="error-text">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+
+    <div class="signup-link">
+      New here? <a href="{% url 'signup' %}">Sign up</a>
+    </div>
+  </div>
+</div>
+<script>
+  function closePopup() {
+    const popup = document.getElementById('popup');
+    if (popup) popup.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
