@@ -1,58 +1,52 @@
-## Website Live Link
-https://news-aggregator-ku26.onrender.com/
+#  Team - INTELLICAST 
+#  Track - Digital Dawn + AI Solution
 
-</p>
-<h1 align = 'center'>News Aggregator</h1>
-<br>
+#  NewsDoot – Personalized News Aggregator using AI
 
-<br>
+An AI powered Personalized News Aggregator that delivers real time, relevant, and engaging news tailored to user preferences.  
+Built with Django + NewsAPI + Python, the platform combines personalization, interactivity, and scalability to transform how people consume news.  
 
-[![](https://img.shields.io/badge/Made_with-Python3-blue?style=for-the-badge&logo=python)](https://www.python.org "Python3")[![](https://img.shields.io/badge/Made_with-Django-blue?style=for-the-badge&logo=django)](https://www.djangoproject.com/ "Django")
+##  Problem Statement
+In today’s digital era, users are overwhelmed with generic and biased news.  
+Existing platforms lack personalization, interactivity, and accessibility across languages.  
+Users need a smart, adaptive system that filters clutter and delivers trustworthy, engaging, and user focused news .
 
-</p>
+## Proposed Solution
 
-## Description
+NewsDoot solves this by:
+* Aggregating news in real time from trusted sources.  
+* Providing personalized recommendations using Like/Dislike feedback and sentiment analysis.  
+* Enhancing engagement with chatbot queries, multi-language support, and community discussions .  
+* Offering a clean dashboard with Light/Dark themes, filtering, newsletters, and analytics.  
+* Built on a scalable Django backend with modular APIs.
 
-News aggregator is a Django project to scrape a news website using Beautiful soup and request module and hence combination of web crawlers and web applications.
-Both of these technologies have their implementation in Python.
+## Key Features
 
-## Features
+*  Real time Aggregation – NewsAPI integration for trusted, live updates  
+*  Personalization – Like/Dislike feedback loop + sentiment analysis  
+*  Chatbot – Ask for suggestions  
+*  Multi language Support – Regional + international news (supports different languages) 
+*  Community Discussions – Share their comments.
+*  Save & Share – Bookmark articles, share via WhatsApp/Telegram
+*  Analytics Dashboard – Track reading habits and preferences  
+*  Light/Dark Mode – Modern UI experience  
+*  Daily Newsletters – Personalized email updates  
 
-Our news aggregator works in 3 steps:<br>
-1.It scrapes the news website for the articles.In this Django project, we are scraping a website 'www.theonion.com'<br>
-(We have scraped news articles from 'latest' section of 'www.theonion.com' for demonstration)<br>
-2.Then it stores the article’s images, links, and title.<br>
-3.The stored objects in the database are served to the client. The client gets information in a nice template by clicking the 'Load news' button and select the different options available to you.The options are: Latest,Entertainment,Sports,Politics,Opinion,Breaking-News<br>
+## Tech Stack
 
+* Backend: Python, Django  
+* Frontend: HTML, CSS, JS  
+* Database: SQLite    
+* APIs: NewsAPI for real time news  
+* ML Model : Logistic Regression(best for fast and provides interpretability) for sentiment analysis  
+
+## Simple yet effective System Architecture
+
+			 ↗  ML Layer (Sentiment Analysis) 
+NewsAPI → Django Backend →  Frontend Dashboard (HTML/JS)    → Database
+                         ↘  Chatbot, Analytics, Newsletters
         ----------------------------------------------------------------------------------------
-### Screenshots ###
-## Latest
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/latest_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/latest_night_mode.PNG)
-## Entertainment
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/entertainment_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/entertainment_night_mode.PNG)
-## Sports
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/sports_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/sports_night_mode.PNG)
-## Politics
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/polititcs_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/polititcs_night_mode.PNG)
-## Breaking News
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/breaking_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/breaking_night_mode.PNG)
-## Opinion News
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/opinion_light_mode.PNG)
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/opinion_night_mode.PNG)
-## Facebook share
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/facebook_share.PNG)
-## Whatsapp share
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/whatsapp_share.PNG)
-## Telegram share
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/telegram_share.PNG)
-## Copy to clipboard
-![](https://github.com/sam-boghara/News-Aggregator/blob/master/screenshots/copy_to_clipboard.PNG)
----------------------------------------------------------------------------------------
+
 
 ## How To Use
 
